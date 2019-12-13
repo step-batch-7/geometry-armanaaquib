@@ -47,4 +47,31 @@ describe("line", function() {
             assert.strictEqual(lineOne.isEqualTo(something), false);
         });
     });
+
+    describe("length", function() {
+        it("should return length of line if both ends are in center", function() {
+            const line = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
+            assert.strictEqual(line.length, 0);
+        });
+
+        it("should return length of line if one end is center and other is on x-axis positve side", function() {
+            const line = new Line({ x: 0, y: 0 }, { x: 1, y: 0 });
+            assert.strictEqual(line.length, 1);
+        });
+
+        it("should return length of line if one end is is center and other is on x-axis negative side", function() {
+            const line = new Line({ x: 0, y: 0 }, { x: -1, y: 0 });
+            assert.strictEqual(line.length, 1);
+        });
+
+        it("should return length of line if one end is is center and other is on y-axis poisitive side", function() {
+            const line = new Line({ x: 0, y: 0 }, { x: 0, y: 1 });
+            assert.strictEqual(line.length, 1);
+        });
+
+        it("should return length of line if one end is is center and other is on y-axis negative side", function() {
+            const line = new Line({ x: 0, y: 0 }, { x: 0, y: -1 });
+            assert.strictEqual(line.length, 1);
+        });
+    });
 });
