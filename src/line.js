@@ -29,6 +29,10 @@ class Line {
     get slope() {
         return (this.start.y - this.end.y) / (this.start.x - this.end.x);
     }
+
+    isParallelTo(otherLine) {
+        return this.slope === otherLine.slope;
+    }
 }
 
 module.exports = Line;

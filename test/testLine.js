@@ -116,4 +116,31 @@ describe("Line", function() {
             assert.deepStrictEqual(line.slope, -1);
         });
     });
+
+    describe("isParallelTo", function() {
+        it("should return true if both lines are horizontal", function() {
+            const lineOne = new Line({ x: 1, y: 1 }, { x: -1, y: 1 });
+            const lineTwo = new Line({ x: 5, y: 1 }, { x: -5, y: 1 });
+
+            assert.deepStrictEqual(lineOne.isParallelTo(lineTwo), true);
+        });
+
+        it("should return true if both lines are vertical", function() {
+            const lineOne = new Line({ x: 1, y: 1 }, { x: 1, y: -1 });
+            const lineTwo = new Line({ x: 1, y: 5 }, { x: 1, y: -5 });
+            assert.deepStrictEqual(lineOne.isParallelTo(lineTwo), true);
+        });
+
+        it("should return true if both lines are going up from left to right", function() {
+            const lineOne = new Line({ x: -1, y: -1 }, { x: 1, y: 1 });
+            const lineTwo = new Line({ x: -5, y: -5 }, { x: 5, y: 5 });
+            assert.deepStrictEqual(lineOne.isParallelTo(lineTwo), true);
+        });
+
+        it("should return return if both lines are going down from left to right", function() {
+            const lineOne = new Line({ x: -1, y: 1 }, { x: 1, y: -1 });
+            const lineTwo = new Line({ x: -5, y: 5 }, { x: 5, y: -5 });
+            assert.deepStrictEqual(lineOne.isParallelTo(lineTwo), true);
+        });
+    });
 });
