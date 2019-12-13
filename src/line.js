@@ -9,9 +9,10 @@ class Line {
     }
 
     toString() {
-        let printableString = `Line start(${this.start.x},${this.start.y}),`;
-        printableString += `end(${this.end.x},${this.end.y})`;
-        return printableString;
+        const startString = `start(${this.start.x},${this.start.y})`;
+        const endString = `end(${this.end.x},${this.end.y})`;
+
+        return `Line ${startString},${endString}`;
     }
 
     isEqualTo(other) {
