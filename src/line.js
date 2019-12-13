@@ -1,4 +1,8 @@
 class Line {
+    static arePointsEqual = function(pointOne, pointTwo) {
+        return pointOne.x === pointTwo.x && pointOne.y === pointTwo.y;
+    };
+
     constructor(startPoint, endPoint) {
         this.startPoint = { ...startPoint };
         this.endPoint = { ...endPoint };
@@ -8,13 +12,12 @@ class Line {
         return `Line start(${this.startPoint.x},${this.startPoint.y}),end(${this.endPoint.x},${this.endPoint.y})`;
     }
 
-    isEqual(otherLine) {
-        let isEqual = this.startPoint.x === otherLine.startPoint.x;
-        isEqual = isEqual && this.startPoint.y === otherLine.startPoint.y;
-        isEqual = isEqual && this.endPoint.x === otherLine.endPoint.x;
-        isEqual = isEqual && this.endPoint.y === otherLine.endPoint.y;
+    isEqualTo(line) {
+        const isLine = line instanceof Line;
+        const areStartsEqual = Line.arePointsEqual(this.startPoint, line.startPoint);
+        const areEndsEqual = Line.arePointsEqual(this.endPoint, line.endPoint);
 
-        return isEqual;
+        return isLine && areStartsEqual && areEndsEqual;
     }
 }
 

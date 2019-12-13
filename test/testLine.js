@@ -13,20 +13,17 @@ describe("line", function() {
 
     describe("isEqual", function() {
         it("should return true if lines are same", function() {
-            const startPoint = { x: 1, y: 2 };
-            const endPoint = { x: 2, y: 3 };
+            const lineOne = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
+            const lineTwo = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
 
-            const lineOne = new Line(startPoint, endPoint);
-            const lineTwo = new Line(startPoint, endPoint);
-
-            assert.strictEqual(lineOne.isEqual(lineTwo), true);
+            assert.strictEqual(lineOne.isEqualTo(lineTwo), true);
         });
 
         it("should return false if lines are not same", function() {
             const lineOne = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
             const lineTwo = new Line({ x: 2, y: 2 }, { x: 2, y: 4 });
 
-            assert.strictEqual(lineOne.isEqual(lineTwo), false);
+            assert.strictEqual(lineOne.isEqualTo(lineTwo), false);
         });
     });
 });
