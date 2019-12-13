@@ -1,7 +1,7 @@
-const assert = require("assert");
+const assert = require("chai").assert;
 const Line = require("../src/line");
 
-describe("line", function() {
+describe("Line", function() {
     describe("toString", function() {
         it("should return printable string for line", function() {
             const expectedValue = "Line start(1,2),end(2,3)";
@@ -72,6 +72,26 @@ describe("line", function() {
         it("should return length of line if one end is is center and other is on y-axis negative side", function() {
             const line = new Line({ x: 0, y: 0 }, { x: 0, y: -1 });
             assert.strictEqual(line.length, 1);
+        });
+
+        it("should return length of line if one end is center and other is in quadrant one", function() {
+            const line = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
+            assert.approximately(line.length, 1.414, 0.001);
+        });
+
+        it("should return length of line if one end is center and other is in quadrant two", function() {
+            const line = new Line({ x: 0, y: 0 }, { x: -1, y: 1 });
+            assert.approximately(line.length, 1.414, 0.001);
+        });
+
+        it("should return length of line if one end is center and other is in quadrant three", function() {
+            const line = new Line({ x: 0, y: 0 }, { x: -1, y: -1 });
+            assert.approximately(line.length, 1.414, 0.001);
+        });
+
+        it("should return length of line if one end is center and other is in quadrant four", function() {
+            const line = new Line({ x: 0, y: 0 }, { x: 1, y: -1 });
+            assert.approximately(line.length, 1.414, 0.001);
         });
     });
 });
