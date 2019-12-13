@@ -3,19 +3,19 @@ class Line {
         return pointOne.x === pointTwo.x && pointOne.y === pointTwo.y;
     };
 
-    constructor(startPoint, endPoint) {
-        this.startPoint = { ...startPoint };
-        this.endPoint = { ...endPoint };
+    constructor(start, end) {
+        this.start = { ...start };
+        this.end = { ...end };
     }
 
     toString() {
-        return `Line start(${this.startPoint.x},${this.startPoint.y}),end(${this.endPoint.x},${this.endPoint.y})`;
+        return `Line start(${this.start.x},${this.start.y}),end(${this.end.x},${this.end.y})`;
     }
 
     isEqualTo(line) {
         const isLine = line instanceof Line;
-        const areStartsEqual = Line.arePointsEqual(this.startPoint, line.startPoint);
-        const areEndsEqual = Line.arePointsEqual(this.endPoint, line.endPoint);
+        const areStartsEqual = Line.arePointsEqual(this.start, line.start);
+        const areEndsEqual = Line.arePointsEqual(this.end, line.end);
 
         return isLine && areStartsEqual && areEndsEqual;
     }
