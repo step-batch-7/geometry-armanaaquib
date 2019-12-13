@@ -5,6 +5,10 @@
     "scripts": {
         "test": "nyc mocha"
     },
+    "devDependencies": {
+        "nyc": "14.1.1",
+        "mocha": "6.2.2"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/step-batch-7/geometry-armanaaquib.git"
