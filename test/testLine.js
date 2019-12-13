@@ -3,7 +3,7 @@ const Line = require("../src/line");
 
 describe("line", function() {
     describe("toString", function() {
-        it("should return points which is passed", function() {
+        it("should return printable string for line", function() {
             const expectedValue = "Line start(1,2),end(2,3)";
             const actualValue = new Line({ x: 1, y: 2 }, { x: 2, y: 3 }).toString();
 
@@ -23,7 +23,7 @@ describe("line", function() {
             const lineOne = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
             const lineTwo = new Line({ x: 2, y: 2 }, { x: 2, y: 4 });
 
-            assert.strictEqual(lineOne.isEqualTo(lineTwo), false);
+            assert.strictEqual(lineOne.isEqualTo({ lineTwo }), false);
         });
 
         it("should return false if otherOne is not a line and points are equal", function() {
@@ -36,6 +36,13 @@ describe("line", function() {
         it("should return false if otherOne is not a line and points are not equal", function() {
             const lineOne = new Line({ x: 1, y: 2 }, { x: 4, y: 3 });
             const something = { start: { x: 2, y: 2 }, end: { x: 2, y: 3 } };
+
+            assert.strictEqual(lineOne.isEqualTo(something), false);
+        });
+
+        it("should return false if otherOne is not a line", function() {
+            const lineOne = new Line({ x: 1, y: 2 }, { x: 4, y: 3 });
+            const something = {};
 
             assert.strictEqual(lineOne.isEqualTo(something), false);
         });

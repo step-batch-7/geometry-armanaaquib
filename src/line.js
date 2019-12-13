@@ -16,10 +16,7 @@ class Line {
 
     isEqualTo(line) {
         const isLine = line instanceof Line;
-        const areStartsEqual = Line.arePointsEqual(this.start, line.start);
-        const areEndsEqual = Line.arePointsEqual(this.end, line.end);
-
-        return isLine && areStartsEqual && areEndsEqual;
+        return isLine && Line.arePointsEqual(this.start, line.start) && Line.arePointsEqual(this.end, line.end);
     }
 }
 
