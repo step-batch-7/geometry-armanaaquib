@@ -23,15 +23,19 @@ class Line {
     }
 
     get length() {
-        return Math.sqrt((this.start.x - this.end.x) ** 2 + (this.start.y + this.end.y) ** 2);
+        return Math.sqrt((this.start.x - this.end.x) ** 2 + (this.start.y - this.end.y) ** 2);
     }
 
     get slope() {
-        return (this.start.y - this.end.y) / (this.start.x - this.end.x);
+        return (this.end.y - this.start.y) / (this.end.x - this.start.x);
     }
 
-    isParallelTo(otherLine) {
-        return this.slope === otherLine.slope;
+    isParallelTo(other) {
+        if (!(other instanceof Line)) {
+            return false;
+        }
+
+        return this.slope === other.slope;
     }
 }
 

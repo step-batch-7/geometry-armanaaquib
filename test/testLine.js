@@ -39,70 +39,60 @@ describe("Line", function() {
 
             assert.strictEqual(lineOne.isEqualTo(something), false);
         });
+    });
 
+    describe("length", function() {
         it("should return false if otherOne is not a line", function() {
             const lineOne = new Line({ x: 1, y: 2 }, { x: 4, y: 3 });
             const something = {};
 
             assert.strictEqual(lineOne.isEqualTo(something), false);
         });
-    });
 
-    describe("length", function() {
         it("should return length of line if both ends are in center", function() {
             const line = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
             assert.strictEqual(line.length, 0);
         });
 
-        it("should return length of line if one end is center and other is on x-axis positve side", function() {
-            const line = new Line({ x: 0, y: 0 }, { x: 1, y: 0 });
-            assert.strictEqual(line.length, 1);
+        it("should return length of line if line is on x-axis", function() {
+            const line = new Line({ x: 1, y: 0 }, { x: -1, y: 0 });
+            assert.strictEqual(line.length, 2);
         });
 
-        it("should return length of line if one end is is center and other is on x-axis negative side", function() {
-            const line = new Line({ x: 0, y: 0 }, { x: -1, y: 0 });
-            assert.strictEqual(line.length, 1);
+        it("should return length of line if line is on y-axis", function() {
+            const line = new Line({ x: 0, y: -1 }, { x: 0, y: 1 });
+            assert.strictEqual(line.length, 2);
         });
 
-        it("should return length of line if one end is is center and other is on y-axis poisitive side", function() {
-            const line = new Line({ x: 0, y: 0 }, { x: 0, y: 1 });
-            assert.strictEqual(line.length, 1);
+        it("should return length of line if line is horizontal", function() {
+            const line = new Line({ x: 1, y: 1 }, { x: -1, y: 1 });
+            assert.strictEqual(line.length, 2);
         });
 
-        it("should return length of line if one end is is center and other is on y-axis negative side", function() {
-            const line = new Line({ x: 0, y: 0 }, { x: 0, y: -1 });
-            assert.strictEqual(line.length, 1);
+        it("should return length of line if line is vertical", function() {
+            const line = new Line({ x: 1, y: 1 }, { x: 1, y: 2 });
+            assert.deepStrictEqual(line.length, 1);
         });
 
-        it("should return length of line if one end is center and other is in quadrant one", function() {
-            const line = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
-            assert.approximately(line.length, 1.414, 0.001);
+        it("should return length of line if line is going up from left to right", function() {
+            const line = new Line({ x: -1, y: -1 }, { x: 1, y: 1 });
+            assert.approximately(line.length, 2.828, 0.001);
         });
 
-        it("should return length of line if one end is center and other is in quadrant two", function() {
-            const line = new Line({ x: 0, y: 0 }, { x: -1, y: 1 });
-            assert.approximately(line.length, 1.414, 0.001);
-        });
-
-        it("should return length of line if one end is center and other is in quadrant three", function() {
-            const line = new Line({ x: 0, y: 0 }, { x: -1, y: -1 });
-            assert.approximately(line.length, 1.414, 0.001);
-        });
-
-        it("should return length of line if one end is center and other is in quadrant four", function() {
-            const line = new Line({ x: 0, y: 0 }, { x: 1, y: -1 });
-            assert.approximately(line.length, 1.414, 0.001);
+        it("should return length of line if line is going down from left to right", function() {
+            const line = new Line({ x: -1, y: 1 }, { x: 1, y: -1 });
+            assert.approximately(line.length, 2.828, 0.001);
         });
     });
 
     describe("slope", function() {
         it("should return slope if line is horizontal", function() {
             const line = new Line({ x: 1, y: 1 }, { x: -1, y: 1 });
-            assert.deepStrictEqual(line.slope, 0);
+            assert.deepStrictEqual(line.slope, -0);
         });
 
         it("should return slope if line is vertical", function() {
-            const line = new Line({ x: 1, y: 1 }, { x: 1, y: -1 });
+            const line = new Line({ x: 1, y: 1 }, { x: 1, y: 2 });
             assert.deepStrictEqual(line.slope, Infinity);
         });
 
@@ -118,6 +108,13 @@ describe("Line", function() {
     });
 
     describe("isParallelTo", function() {
+        it("should return false if other one is not a line", function() {
+            const lineOne = new Line({ x: 1, y: 1 }, { x: -1, y: 1 });
+            const other = { start: { x: 5, y: 1 }, end: { x: -5, y: 1 } };
+
+            assert.deepStrictEqual(lineOne.isParallelTo(other), false);
+        });
+
         it("should return true if both lines are horizontal", function() {
             const lineOne = new Line({ x: 1, y: 1 }, { x: -1, y: 1 });
             const lineTwo = new Line({ x: 5, y: 1 }, { x: -5, y: 1 });
