@@ -9,7 +9,9 @@ class Line {
     }
 
     toString() {
-        return `Line start(${this.start.x},${this.start.y}),end(${this.end.x},${this.end.y})`;
+        let printableString = `Line start(${this.start.x},${this.start.y}),`;
+        printableString += `end(${this.end.x},${this.end.y})`;
+        return printableString;
     }
 
     isEqualTo(line) {
