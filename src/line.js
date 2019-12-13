@@ -25,6 +25,10 @@ class Line {
     get length() {
         return Math.sqrt((this.start.x - this.end.x) ** 2 + (this.start.y + this.end.y) ** 2);
     }
+
+    get slope() {
+        return (this.start.y - this.end.y) / (this.start.x - this.end.x);
+    }
 }
 
 module.exports = Line;

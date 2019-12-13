@@ -94,4 +94,26 @@ describe("Line", function() {
             assert.approximately(line.length, 1.414, 0.001);
         });
     });
+
+    describe("slope", function() {
+        it("should return slope if line is horizontal", function() {
+            const line = new Line({ x: 1, y: 1 }, { x: -1, y: 1 });
+            assert.deepStrictEqual(line.slope, 0);
+        });
+
+        it("should return slope if line is vertical", function() {
+            const line = new Line({ x: 1, y: 1 }, { x: 1, y: -1 });
+            assert.deepStrictEqual(line.slope, Infinity);
+        });
+
+        it("should return positive slope if line is going up from left to right", function() {
+            const line = new Line({ x: -1, y: -1 }, { x: 1, y: 1 });
+            assert.deepStrictEqual(line.slope, 1);
+        });
+
+        it("should return negative slope if line is going down from left to right", function() {
+            const line = new Line({ x: -1, y: 1 }, { x: 1, y: -1 });
+            assert.deepStrictEqual(line.slope, -1);
+        });
+    });
 });
