@@ -22,12 +22,16 @@ class Line {
     }
 
     get length() {
-        return Math.sqrt((this.start.x - this.end.x) ** 2 + (this.start.y - this.end.y) ** 2);
+        const run = this.end.x - this.start.x;
+        const rise = this.end.y - this.start.y;
+
+        return Math.sqrt(run ** 2 + rise ** 2);
     }
 
     get slope() {
         const rise = this.end.y - this.start.y;
         const run = this.end.x - this.start.x;
+
         return rise / run;
     }
 
