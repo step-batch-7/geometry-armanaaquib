@@ -153,7 +153,7 @@ describe("Line", function() {
         });
     });
 
-    describe("findX", function() {
+    describe("#findX()", function() {
         it("should give NaN if y is out of range", function() {
             const line = new Line({ x: 5, y: 1 }, { x: -1, y: 5 });
             assert.deepStrictEqual(line.findX(-3), NaN);
@@ -184,7 +184,7 @@ describe("Line", function() {
         });
     });
 
-    describe("findY", function() {
+    describe("#findY()", function() {
         it("should give NaN if x is out of range", function() {
             const line = new Line({ x: 5, y: 1 }, { x: -1, y: 5 });
             assert.deepStrictEqual(line.findY(7), NaN);

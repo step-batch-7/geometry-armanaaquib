@@ -55,7 +55,7 @@ class Line {
     findY(x) {
         if (!isInRange([this.start.x, this.end.x], x)) return NaN;
 
-        if (this.slope === Infinity || this.slope === -Infinity) return this.start.y;
+        if ([Infinity, -Infinity].includes(this.slope)) return this.start.y;
 
         return this.slope * (x - this.start.x) + this.start.y;
     }
