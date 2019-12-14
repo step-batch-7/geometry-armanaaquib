@@ -16,9 +16,8 @@ class Line {
     }
 
     isEqualTo(other) {
-        if (!(other instanceof Line)) {
-            return false;
-        }
+        if (!(other instanceof Line)) return false;
+
         return arePointsEqual(this.start, other.start) && arePointsEqual(this.end, other.end);
     }
 
@@ -27,7 +26,9 @@ class Line {
     }
 
     get slope() {
-        return (this.end.y - this.start.y) / (this.end.x - this.start.x);
+        const rise = this.end.y - this.start.y;
+        const run = this.end.x - this.start.x;
+        return rise / run;
     }
 
     isParallelTo(other) {
