@@ -2,6 +2,11 @@ const arePointsEqual = function(pointOne, pointTwo) {
     return pointOne.x === pointTwo.x && pointOne.y === pointTwo.y;
 };
 
+const isInRange = function(range, value) {
+    const [start, end] = range.sort();
+    return value >= start && value <= end;
+};
+
 class Line {
     constructor(start, end) {
         this.start = { x: start.x, y: start.y };
@@ -37,6 +42,14 @@ class Line {
 
     isParallelTo(other) {
         return other instanceof Line && this.slope === other.slope;
+    }
+
+    findX(y) {
+        if (this.slope === 0) return this.start.x;
+
+        if (!isInRange([this.start.y, this.end.y], y)) return NaN;
+
+        return (y - this.start.y) / this.slope + this.start.x;
     }
 }
 

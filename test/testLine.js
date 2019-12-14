@@ -152,4 +152,30 @@ describe("Line", function() {
             assert.deepStrictEqual(lineOne.isParallelTo(lineTwo), false);
         });
     });
+
+    describe("findX", function() {
+        it("should give x value for given y for horizontal line ", function() {
+            const line = new Line({ x: 5, y: 1 }, { x: -1, y: 1 });
+
+            assert.deepStrictEqual(line.findX(1), 5);
+        });
+
+        it("should give x value for given y for vertical line", function() {
+            const line = new Line({ x: 1, y: 1 }, { x: 1, y: 7 });
+
+            assert.deepStrictEqual(line.findX(5), 1);
+        });
+
+        it("should give x value for given y for line is going up from left to right", function() {
+            const line = new Line({ x: -1, y: -1 }, { x: 2, y: 5 });
+
+            assert.deepStrictEqual(line.findX(1), 0);
+        });
+
+        it("should give x value for given y for line is going down from left to right", function() {
+            const line = new Line({ x: -1, y: 1 }, { x: 2, y: -5 });
+
+            assert.deepStrictEqual(line.findX(-1), 0);
+        });
+    });
 });
