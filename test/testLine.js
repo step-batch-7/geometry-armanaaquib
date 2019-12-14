@@ -154,6 +154,11 @@ describe("Line", function() {
     });
 
     describe("findX", function() {
+        it("should give NaN if y is out of range", function() {
+            const line = new Line({ x: 5, y: 1 }, { x: -1, y: 5 });
+            assert.deepStrictEqual(line.findX(-3), NaN);
+        });
+
         it("should give x value for given y for horizontal line ", function() {
             const line = new Line({ x: 5, y: 1 }, { x: -1, y: 1 });
 
@@ -176,6 +181,37 @@ describe("Line", function() {
             const line = new Line({ x: -1, y: 1 }, { x: 2, y: -5 });
 
             assert.deepStrictEqual(line.findX(-1), 0);
+        });
+    });
+
+    describe("findY", function() {
+        it("should give NaN if x is out of range", function() {
+            const line = new Line({ x: 5, y: 1 }, { x: -1, y: 5 });
+            assert.deepStrictEqual(line.findY(7), NaN);
+        });
+
+        it("should give y value for given x for horizontal line ", function() {
+            const line = new Line({ x: 5, y: 1 }, { x: -1, y: 1 });
+
+            assert.deepStrictEqual(line.findY(1), 1);
+        });
+
+        it("should give y value for given x for vertical line", function() {
+            const line = new Line({ x: 1, y: 2 }, { x: 1, y: 7 });
+
+            assert.deepStrictEqual(line.findY(1), 2);
+        });
+
+        it("should give y value for given x for line is going up from left to right", function() {
+            const line = new Line({ x: -1, y: -1 }, { x: 2, y: 5 });
+
+            assert.deepStrictEqual(line.findY(1), 3);
+        });
+
+        it("should give y value for given x for line is going down from left to right", function() {
+            const line = new Line({ x: -1, y: 1 }, { x: 3, y: -5 });
+
+            assert.deepStrictEqual(line.findY(1), -2);
         });
     });
 });

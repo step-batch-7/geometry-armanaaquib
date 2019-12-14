@@ -45,11 +45,19 @@ class Line {
     }
 
     findX(y) {
-        if (this.slope === 0) return this.start.x;
-
         if (!isInRange([this.start.y, this.end.y], y)) return NaN;
 
+        if (this.slope === 0) return this.start.x;
+
         return (y - this.start.y) / this.slope + this.start.x;
+    }
+
+    findY(x) {
+        if (!isInRange([this.start.x, this.end.x], x)) return NaN;
+
+        if (this.slope === Infinity || this.slope === -Infinity) return this.start.y;
+
+        return this.slope * (x - this.start.x) + this.start.y;
     }
 }
 
