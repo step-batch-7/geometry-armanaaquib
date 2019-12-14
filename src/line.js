@@ -59,6 +59,18 @@ class Line {
 
         return this.slope * (x - this.start.x) + this.start.y;
     }
+
+    split() {
+        const midPoint = {
+            x: (this.start.x + this.end.x) / 2,
+            y: (this.start.y + this.end.y) / 2
+        };
+
+        const firstHalf = new Line(this.start, midPoint);
+        const secondHalf = new Line(midPoint, this.end);
+
+        return [firstHalf, secondHalf];
+    }
 }
 
 module.exports = Line;

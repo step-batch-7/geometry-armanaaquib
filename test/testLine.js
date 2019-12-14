@@ -207,4 +207,51 @@ describe("Line", function() {
             assert.deepStrictEqual(line.findY(1), -2);
         });
     });
+
+    describe("#split()", function() {
+        it("should return two same lines if length of line is 0", function() {
+            const line = new Line({ x: 1, y: 1 }, { x: 1, y: 1 });
+
+            const firstHalf = new Line({ x: 1, y: 1 }, { x: 1, y: 1 });
+            const secondHalf = new Line({ x: 1, y: 1 }, { x: 1, y: 1 });
+
+            assert.deepStrictEqual(line.split(), [firstHalf, secondHalf]);
+        });
+
+        it("should return two half lines if line is horizontal", function() {
+            const line = new Line({ x: 5, y: 1 }, { x: -1, y: 1 });
+
+            const firstHalf = new Line({ x: 5, y: 1 }, { x: 2, y: 1 });
+            const secondHalf = new Line({ x: 2, y: 1 }, { x: -1, y: 1 });
+
+            assert.deepStrictEqual(line.split(), [firstHalf, secondHalf]);
+        });
+
+        it("should return two half lines if line is vertical", function() {
+            const line = new Line({ x: 1, y: 2 }, { x: 1, y: 7 });
+
+            const firstHalf = new Line({ x: 1, y: 2 }, { x: 1, y: 4.5 });
+            const secondHalf = new Line({ x: 1, y: 4.5 }, { x: 1, y: 7 });
+
+            assert.deepStrictEqual(line.split(), [firstHalf, secondHalf]);
+        });
+
+        it("should return two half lines if line is going up from left to right", function() {
+            const line = new Line({ x: -1, y: -1 }, { x: 2, y: 5 });
+
+            const firstHalf = new Line({ x: -1, y: -1 }, { x: 0.5, y: 2 });
+            const secondHalf = new Line({ x: 0.5, y: 2 }, { x: 2, y: 5 });
+
+            assert.deepStrictEqual(line.split(), [firstHalf, secondHalf]);
+        });
+
+        it("should return two half lines if line is going down from left to right", function() {
+            const line = new Line({ x: -1, y: 1 }, { x: 3, y: -5 });
+
+            const firstHalf = new Line({ x: -1, y: 1 }, { x: 1, y: -2 });
+            const secondHalf = new Line({ x: 1, y: -2 }, { x: 3, y: -5 });
+
+            assert.deepStrictEqual(line.split(), [firstHalf, secondHalf]);
+        });
+    });
 });
