@@ -35,4 +35,41 @@ describe("Point", function() {
             assert.deepStrictEqual(point, newPoint);
         });
     });
+
+    describe("#isEqualTo()", function() {
+        it("should return false if otherOne is not a point", function() {
+            const point = new Point(2, 3);
+            const something = {};
+
+            assert.strictEqual(point.isEqualTo(something), false);
+        });
+
+        it("should return true if both are lines and points are same", function() {
+            const pointOne = new Point(2, 3);
+            const pointTwo = new Point(2, 3);
+
+            assert.strictEqual(pointOne.isEqualTo(pointTwo), true);
+        });
+
+        it("should return false if both are lines and points are not same", function() {
+            const pointOne = new Point(1, 3);
+            const pointTwo = new Point(2, 5);
+
+            assert.strictEqual(pointOne.isEqualTo({ pointTwo }), false);
+        });
+
+        it("should return false if otherOne is not a line and points are equal", function() {
+            const pointOne = new Point(1, 2);
+            const something = { x: 1, y: 2 };
+
+            assert.strictEqual(pointOne.isEqualTo(something), false);
+        });
+
+        it("should return false if otherOne is not a line and points are not equal", function() {
+            const pointOne = new Point(2, 3);
+            const something = { x: 1, y: 5 };
+
+            assert.strictEqual(pointOne.isEqualTo(something), false);
+        });
+    });
 });

@@ -3,7 +3,7 @@ const arePointsEqual = function(pointOne, pointTwo) {
 };
 
 const isInRange = function(range, value) {
-    const [start, end] = range.sort();
+    const [start, end] = [Math.min(...range), Math.max(...range)];
     return value >= start && value <= end;
 };
 
