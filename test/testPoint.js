@@ -26,4 +26,13 @@ describe("Point", function() {
             );
         });
     });
+
+    describe("#clone()", function() {
+        it("should return object with same co-ordinates", function() {
+            const point = new Point(2, 3);
+            const newPoint = point.clone();
+            assert.notStrictEqual(point, newPoint);
+            assert.deepStrictEqual(point, newPoint);
+        });
+    });
 });
