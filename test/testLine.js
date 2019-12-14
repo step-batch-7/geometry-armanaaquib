@@ -4,10 +4,10 @@ const Line = require("../src/line");
 describe("Line", function() {
     describe("#toString()", function() {
         it("should return printable string for line", function() {
-            const expectedValue = "Line start(1,2),end(2,3)";
-            const actualValue = new Line({ x: 1, y: 2 }, { x: 2, y: 3 }).toString();
+            const expectedValue = "[Line (1,2) to (2,3)]";
+            const line = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
 
-            assert.strictEqual(actualValue, expectedValue);
+            assert.strictEqual(line.toString(), expectedValue);
         });
     });
 

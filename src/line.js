@@ -9,10 +9,10 @@ class Line {
     }
 
     toString() {
-        const startString = `start(${this.start.x},${this.start.y})`;
-        const endString = `end(${this.end.x},${this.end.y})`;
+        const startString = `(${this.start.x},${this.start.y})`;
+        const endString = `(${this.end.x},${this.end.y})`;
 
-        return `Line ${startString},${endString}`;
+        return `[Line ${startString} to ${endString}]`;
     }
 
     isEqualTo(other) {
