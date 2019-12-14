@@ -12,13 +12,6 @@ describe("Line", function() {
     });
 
     describe("#isEqual()", function() {
-        it("should return false if otherOne is not a line", function() {
-            const lineOne = new Line({ x: 1, y: 2 }, { x: 4, y: 3 });
-            const something = {};
-
-            assert.strictEqual(lineOne.isEqualTo(something), false);
-        });
-
         it("should return true if both are lines and points are same", function() {
             const lineOne = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
             const lineTwo = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
@@ -49,7 +42,7 @@ describe("Line", function() {
     });
 
     describe("#length", function() {
-        it("should return length of line if both ends are in center", function() {
+        it("should return length of line if both ends are same", function() {
             const line = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
             assert.strictEqual(line.length, 0);
         });
