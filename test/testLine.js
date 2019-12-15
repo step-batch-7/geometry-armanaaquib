@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Line = require("../src/line");
+const Point = require("../src/point");
 
 describe("Line", function() {
     describe("#toString()", function() {
@@ -252,6 +253,43 @@ describe("Line", function() {
             const secondHalf = new Line({ x: 1, y: -2 }, { x: 3, y: -5 });
 
             assert.deepStrictEqual(line.split(), [firstHalf, secondHalf]);
+        });
+    });
+
+    describe("#hasPoint()", function() {
+        it("should return false if point is not passed", function() {
+            const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+            const other = { x: 2, y: 2 };
+
+            assert.strictEqual(line.hasPoint(other), false);
+        });
+
+        it("should return true if line is horizontal and point belongs to the line", function() {
+            const line = new Line({ x: 5, y: 1 }, { x: -1, y: 1 });
+            const point = new Point(4, 1);
+
+            assert.strictEqual(line.hasPoint(point), true);
+        });
+
+        it("should return false if line is horizontal and point doesn't belong to the line", function() {
+            const line = new Line({ x: 5, y: 1 }, { x: -1, y: 1 });
+            const point = new Point(6, 1);
+
+            assert.strictEqual(line.hasPoint(point), false);
+        });
+
+        it("should return true if line is vertical and point belongs to the line", function() {
+            const line = new Line({ x: 1, y: 2 }, { x: 1, y: 7 });
+            const point = new Point(1, 3);
+
+            assert.strictEqual(line.hasPoint(point), true);
+        });
+
+        it("should return false if line is vertical and point doesn't belong to the line", function() {
+            const line = new Line({ x: 1, y: 2 }, { x: 1, y: 7 });
+            const point = new Point(1, 1);
+
+            assert.strictEqual(line.hasPoint(point), false);
         });
     });
 });
