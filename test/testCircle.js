@@ -58,4 +58,16 @@ describe("Circle", function() {
             assert.approximately(circle.area, 12.56, 0.01);
         });
     });
+
+    describe("#perimeter", function() {
+        it("should return 0 if radius of circle is 0", function() {
+            const circle = new Circle(new Point(1, 1), 0);
+            assert.deepStrictEqual(circle.perimeter, 0);
+        });
+
+        it("should return positive area if radius of circle is positive integer", function() {
+            const circle = new Circle(new Point(1, 1), 1);
+            assert.approximately(circle.perimeter, 6.28, 0.01);
+        });
+    });
 });
