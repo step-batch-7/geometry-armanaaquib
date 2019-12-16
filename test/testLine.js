@@ -291,5 +291,33 @@ describe("Line", function() {
 
             assert.strictEqual(line.hasPoint(point), false);
         });
+
+        it("should return true if line is line is going up from left to right and point belongs to the line", function() {
+            const line = new Line({ x: -1, y: -1 }, { x: 2, y: 2 });
+            const point = new Point(1, 1);
+
+            assert.strictEqual(line.hasPoint(point), true);
+        });
+
+        it("should return false if line is line is going up from left to right and point doesn't belong to the line", function() {
+            const line = new Line({ x: -1, y: -1 }, { x: 2, y: 5 });
+            const point = new Point(-2, 1);
+
+            assert.strictEqual(line.hasPoint(point), false);
+        });
+
+        it("should return true if line is line is going down from left to right and point belongs to the line", function() {
+            const line = new Line({ x: -1, y: 1 }, { x: 2, y: -2 });
+            const point = new Point(1, -1);
+
+            assert.strictEqual(line.hasPoint(point), true);
+        });
+
+        it("should return false if line is line is going down from left to right and point doesn't belong to the line", function() {
+            const line = new Line({ x: -1, y: 1 }, { x: 3, y: -5 });
+            const point = new Point(-2, 1);
+
+            assert.strictEqual(line.hasPoint(point), false);
+        });
     });
 });
