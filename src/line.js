@@ -28,10 +28,7 @@ class Line {
     }
 
     get length() {
-        const run = this.end.x - this.start.x;
-        const rise = this.end.y - this.start.y;
-
-        return Math.sqrt(run ** 2 + rise ** 2);
+        return this.start.findDistanceTo(this.end);
     }
 
     get slope() {
