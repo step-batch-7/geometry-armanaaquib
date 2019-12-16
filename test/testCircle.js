@@ -1,5 +1,6 @@
 const { assert } = require("chai");
 const { Circle } = require("../src/circle");
+const { Point } = require("../src/point");
 
 describe("Circle", function() {
     describe("#toString()", function() {
@@ -43,6 +44,18 @@ describe("Circle", function() {
             const circleTwo = new Circle({ x: 4, y: 2 }, 5);
 
             assert.deepStrictEqual(circleOne.isEqualTo(circleTwo), false);
+        });
+    });
+
+    describe("#area", function() {
+        it("should return 0 if radius of circle is 0", function() {
+            const circle = new Circle(new Point(1, 1), 0);
+            assert.deepStrictEqual(circle.area, 0);
+        });
+
+        it("should return positive area if radius of circle is positive integer", function() {
+            const circle = new Circle(new Point(1, 1), 2);
+            assert.approximately(circle.area, 12.56, 0.01);
         });
     });
 });
