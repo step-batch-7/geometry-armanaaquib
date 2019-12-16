@@ -1,8 +1,8 @@
-const { arePointsEqual } = require("./point");
+const { Point, arePointsEqual } = require("./point");
 
 class Circle {
     constructor(center, radius) {
-        this.center = { x: center.x, y: center.y };
+        this.center = new Point(center.x, center.y);
         this.radius = radius;
     }
 

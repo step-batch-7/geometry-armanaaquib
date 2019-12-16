@@ -7,8 +7,8 @@ const isInRange = function(range, value) {
 
 class Line {
     constructor(start, end) {
-        this.start = { x: start.x, y: start.y };
-        this.end = { x: end.x, y: end.y };
+        this.start = new Point(start.x, start.y);
+        this.end = new Point(end.x, end.y);
     }
 
     toString() {
@@ -62,7 +62,7 @@ class Line {
     findY(x) {
         if (!isInRange([this.start.x, this.end.x], x)) return NaN;
 
-        if ([Infinity, -Infinity].includes(this.slope)) return this.start.y;
+        if (this.slope === Infinity) return this.start.y;
 
         return this.slope * (x - this.start.x) + this.start.y;
     }
