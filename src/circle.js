@@ -1,4 +1,4 @@
-const { Point, arePointsEqual } = require("./point");
+const { Point } = require("./point");
 
 class Circle {
     constructor(center, radius) {
@@ -13,7 +13,7 @@ class Circle {
     isEqualTo(other) {
         if (!(other instanceof Circle)) return false;
 
-        return this.radius === other.radius && arePointsEqual(this.center, other.center);
+        return this.radius === other.radius && this.center.isEqualTo(other.center);
     }
 }
 
