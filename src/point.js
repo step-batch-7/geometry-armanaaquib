@@ -30,6 +30,10 @@ class Point {
 
         return Math.sqrt(run ** 2 + rise ** 2);
     }
+
+    isOn(shape) {
+        return shape.hasPoint(this);
+    }
 }
 
 module.exports = Point;

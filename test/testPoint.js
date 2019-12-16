@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Point = require("../src/point.js");
+const Line = require("../src/line.js");
 
 describe("Point", function() {
     describe("#toString()", function() {
@@ -92,6 +93,22 @@ describe("Point", function() {
             const pointTwo = new Point(2, 2);
 
             assert.approximately(pointOne.findDistanceTo(pointTwo), 1.414, 0.001);
+        });
+    });
+
+    describe("#isOn()", function() {
+        it("should return true if point is on the line", function() {
+            const point = new Point(2, 2);
+            const line = new Line(new Point(1, 1), new Point(3, 3));
+
+            assert.strictEqual(point.isOn(line), true);
+        });
+
+        it("should return false if point is not on the line", function() {
+            const point = new Point(0, 2);
+            const line = new Line(new Point(1, 1), new Point(3, 3));
+
+            assert.strictEqual(point.isOn(line), false);
         });
     });
 });
