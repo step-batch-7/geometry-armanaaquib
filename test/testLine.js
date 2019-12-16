@@ -111,20 +111,33 @@ describe("Line", function() {
 
         it("should return true if both lines are horizontal", function() {
             const lineOne = new Line({ x: 1, y: 1 }, { x: -1, y: 1 });
-            const lineTwo = new Line({ x: 5, y: 1 }, { x: -5, y: 1 });
+            const lineTwo = new Line({ x: 5, y: 2 }, { x: -5, y: 2 });
 
             assert.deepStrictEqual(lineOne.isParallelTo(lineTwo), true);
+        });
+
+        it("should return false if both lines are horizontal and are on same line", function() {
+            const lineOne = new Line({ x: 1, y: 1 }, { x: -1, y: 1 });
+            const lineTwo = new Line({ x: 0, y: 1 }, { x: -5, y: 1 });
+
+            assert.deepStrictEqual(lineOne.isParallelTo(lineTwo), false);
         });
 
         it("should return true if both lines are vertical", function() {
             const lineOne = new Line({ x: 1, y: 1 }, { x: 1, y: -1 });
-            const lineTwo = new Line({ x: 1, y: 5 }, { x: 1, y: -5 });
+            const lineTwo = new Line({ x: 2, y: 5 }, { x: 2, y: -5 });
             assert.deepStrictEqual(lineOne.isParallelTo(lineTwo), true);
         });
 
+        it("should return false if both lines are vertical and are on same line", function() {
+            const lineOne = new Line({ x: 1, y: 1 }, { x: 1, y: -1 });
+            const lineTwo = new Line({ x: 1, y: 5 }, { x: 1, y: -5 });
+            assert.deepStrictEqual(lineOne.isParallelTo(lineTwo), false);
+        });
+
         it("should return true if both lines are going up from left to right and are parallel", function() {
-            const lineOne = new Line({ x: -1, y: -1 }, { x: 1, y: 1 });
-            const lineTwo = new Line({ x: -5, y: -5 }, { x: 5, y: 5 });
+            const lineOne = new Line({ x: -2, y: 0 }, { x: 0, y: 2 });
+            const lineTwo = new Line({ x: 0, y: -2 }, { x: 2, y: 0 });
             assert.deepStrictEqual(lineOne.isParallelTo(lineTwo), true);
         });
 
@@ -135,14 +148,14 @@ describe("Line", function() {
         });
 
         it("should return true if both lines are going down from left to right and are parallel", function() {
-            const lineOne = new Line({ x: -1, y: 1 }, { x: 1, y: -1 });
-            const lineTwo = new Line({ x: -5, y: 5 }, { x: 5, y: -5 });
+            const lineOne = new Line({ x: 0, y: 1 }, { x: 1, y: 0 });
+            const lineTwo = new Line({ x: -1, y: 0 }, { x: 0, y: -1 });
             assert.deepStrictEqual(lineOne.isParallelTo(lineTwo), true);
         });
 
         it("should return false if both lines are going down from left to right and are not parallel", function() {
-            const lineOne = new Line({ x: -1, y: 1 }, { x: 1, y: -1 });
-            const lineTwo = new Line({ x: -5, y: 5 }, { x: 1, y: -2 });
+            const lineOne = new Line({ x: 1, y: 1 }, { x: 1, y: -1 });
+            const lineTwo = new Line({ x: -5, y: 1 }, { x: 2, y: -2 });
             assert.deepStrictEqual(lineOne.isParallelTo(lineTwo), false);
         });
     });
