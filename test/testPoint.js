@@ -1,6 +1,7 @@
 const { assert } = require("chai");
 const { Point } = require("../src/point.js");
 const { Line } = require("../src/line.js");
+const { Circle } = require("../src/circle.js");
 
 describe("Point", function() {
     describe("#toString()", function() {
@@ -109,6 +110,20 @@ describe("Point", function() {
             const line = new Line(new Point(1, 1), new Point(3, 3));
 
             assert.strictEqual(point.isOn(line), false);
+        });
+
+        it("should return true if point is on the circles", function() {
+            const point = new Point(1, 6);
+            const circle = new Circle(new Point(1, 1), 5);
+
+            assert.strictEqual(point.isOn(circle), true);
+        });
+
+        it("should return false if point is not on the circle", function() {
+            const point = new Point(1, 3);
+            const circle = new Circle(new Point(1, 1), 5);
+
+            assert.strictEqual(point.isOn(circle), false);
         });
     });
 });
