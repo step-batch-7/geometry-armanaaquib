@@ -20,6 +20,13 @@ describe("Line", function() {
             assert.strictEqual(lineOne.isEqualTo(lineTwo), true);
         });
 
+        it("should return true if both are lines and points are alternate", function() {
+            const lineOne = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
+            const lineTwo = new Line({ x: 2, y: 3 }, { x: 1, y: 2 });
+
+            assert.strictEqual(lineOne.isEqualTo(lineTwo), true);
+        });
+
         it("should return false if both are lines and points are not same", function() {
             const lineOne = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
             const lineTwo = new Line({ x: 2, y: 2 }, { x: 2, y: 4 });
