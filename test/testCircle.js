@@ -70,4 +70,30 @@ describe("Circle", function() {
             assert.approximately(circle.perimeter, 6.28, 0.01);
         });
     });
+
+    describe("#hasPoint()", function() {
+        it("should return false if Point is not passed", function() {
+            const circle = new Circle(new Point(1, 1), 5);
+            const other = { x: 1, x: 6 };
+            assert.deepStrictEqual(circle.hasPoint(other), false);
+        });
+
+        it("should return true if Point is on circumference of the circle", function() {
+            const circle = new Circle(new Point(1, 1), 5);
+            const point = new Point(1, 6);
+            assert.deepStrictEqual(circle.hasPoint(point), true);
+        });
+
+        it("should return false if Point is inside of the circle", function() {
+            const circle = new Circle(new Point(1, 1), 5);
+            const point = new Point(1, 3);
+            assert.deepStrictEqual(circle.hasPoint(point), false);
+        });
+
+        it("should return false if Point is outside of the circle", function() {
+            const circle = new Circle(new Point(1, 1), 5);
+            const point = new Point(-7, 1);
+            assert.deepStrictEqual(circle.hasPoint(point), false);
+        });
+    });
 });
