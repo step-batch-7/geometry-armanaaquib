@@ -1,4 +1,4 @@
-const { Point, arePointsCollinear, arePointsEqual } = require("./point");
+const { Point, arePointsCollinear } = require("./point");
 
 const isInRange = function(range, value) {
     const [start, end] = [Math.min(...range), Math.max(...range)];
@@ -22,8 +22,8 @@ class Line {
         if (!(other instanceof Line)) return false;
 
         return (
-            (arePointsEqual(this.start, other.start) && arePointsEqual(this.end, other.end)) ||
-            (arePointsEqual(this.start, other.end) && arePointsEqual(this.end, other.start))
+            (this.start.isEqualTo(other.start) && this.end.isEqualTo(other.end)) ||
+            (this.start.isEqualTo(other.end) && this.end.isEqualTo(other.start))
         );
     }
 
