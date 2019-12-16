@@ -65,4 +65,33 @@ describe("Point", function() {
             assert.strictEqual(pointOne.isEqualTo(something), false);
         });
     });
+
+    describe("#findDistanceTo()", function() {
+        it("should return NaN if other is not point", function() {
+            const point = new Point(1, 1);
+            const other = { x: 1, x: 2 };
+            assert.deepStrictEqual(point.findDistanceTo(other), NaN);
+        });
+
+        it("should return 0 distance between points if both points are same", function() {
+            const pointOne = new Point(0, 0);
+            const pointTwo = new Point(0, 0);
+
+            assert.strictEqual(pointOne.findDistanceTo(pointTwo), 0);
+        });
+
+        it("should work for integer distance between points", function() {
+            const pointOne = new Point(3, 9);
+            const pointTwo = new Point(6, 5);
+
+            assert.strictEqual(pointOne.findDistanceTo(pointTwo), 5);
+        });
+
+        it("should work for decimal distance between points", function() {
+            const pointOne = new Point(1, 1);
+            const pointTwo = new Point(2, 2);
+
+            assert.approximately(pointOne.findDistanceTo(pointTwo), 1.414, 0.001);
+        });
+    });
 });
