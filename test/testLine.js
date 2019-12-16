@@ -40,13 +40,6 @@ describe("Line", function() {
 
             assert.strictEqual(lineOne.isEqualTo(something), false);
         });
-
-        it("should return false if otherOne is not a line and points are not equal", function() {
-            const lineOne = new Line({ x: 1, y: 2 }, { x: 4, y: 3 });
-            const something = { start: { x: 2, y: 2 }, end: { x: 2, y: 3 } };
-
-            assert.strictEqual(lineOne.isEqualTo(something), false);
-        });
     });
 
     describe("#length", function() {
@@ -94,6 +87,11 @@ describe("Line", function() {
 
         it("should return Infinity if line is vertical", function() {
             const line = new Line({ x: 1, y: 1 }, { x: 1, y: 2 });
+            assert.deepStrictEqual(line.slope, Infinity);
+        });
+
+        it("should return Infinity if line is vertical and slope is calculated -Infinity", function() {
+            const line = new Line({ x: 1, y: 3 }, { x: 1, y: 2 });
             assert.deepStrictEqual(line.slope, Infinity);
         });
 

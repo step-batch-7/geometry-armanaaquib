@@ -9,7 +9,7 @@ const isInRange = function(range, value) {
     return value >= start && value <= end;
 };
 
-const arePointsColinear = function(pointOne, pointTwo, pointThree) {
+const arePointsCollinear = function(pointOne, pointTwo, pointThree) {
     return (
         (pointThree.y - pointTwo.y) * (pointTwo.x - pointOne.x) ===
         (pointTwo.y - pointOne.y) * (pointThree.x - pointTwo.x)
@@ -49,12 +49,16 @@ class Line {
         const rise = this.end.y - this.start.y;
         const run = this.end.x - this.start.x;
 
-        return rise / run;
+        const slope = rise / run;
+
+        return slope === -Infinity ? Infinity : slope;
     }
 
     isParallelTo(other) {
         return (
-            other instanceof Line && !arePointsColinear(this.start, this.end, other.start) && this.slope === other.slope
+            other instanceof Line &&
+            !arePointsCollinear(this.start, this.end, other.start) &&
+            this.slope === other.slope
         );
     }
 
