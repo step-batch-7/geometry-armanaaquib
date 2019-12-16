@@ -1,5 +1,5 @@
-const assert = require("chai").assert;
-const Circle = require("../src/circle");
+const { assert } = require("chai");
+const { Circle } = require("../src/circle");
 
 describe("Circle", function() {
     describe("#toString()", function() {

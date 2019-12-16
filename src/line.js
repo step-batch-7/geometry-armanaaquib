@@ -1,19 +1,8 @@
-const Point = require("./point");
-
-const arePointsEqual = function(pointOne, pointTwo) {
-    return pointOne.x === pointTwo.x && pointOne.y === pointTwo.y;
-};
+const { Point, arePointsCollinear, arePointsEqual } = require("./point");
 
 const isInRange = function(range, value) {
     const [start, end] = [Math.min(...range), Math.max(...range)];
     return value >= start && value <= end;
-};
-
-const arePointsCollinear = function(pointOne, pointTwo, pointThree) {
-    return (
-        (pointThree.y - pointTwo.y) * (pointTwo.x - pointOne.x) ===
-        (pointTwo.y - pointOne.y) * (pointThree.x - pointTwo.x)
-    );
 };
 
 class Line {
@@ -97,4 +86,4 @@ class Line {
     }
 }
 
-module.exports = Line;
+module.exports = { Line };

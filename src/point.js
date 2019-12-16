@@ -1,3 +1,14 @@
+const arePointsEqual = function(pointOne, pointTwo) {
+    return pointOne.x === pointTwo.x && pointOne.y === pointTwo.y;
+};
+
+const arePointsCollinear = function(pointOne, pointTwo, pointThree) {
+    return (
+        (pointThree.y - pointTwo.y) * (pointTwo.x - pointOne.x) ===
+        (pointTwo.y - pointOne.y) * (pointThree.x - pointTwo.x)
+    );
+};
+
 class Point {
     constructor(x, y) {
         this.x = x;
@@ -15,7 +26,7 @@ class Point {
     isEqualTo(other) {
         if (!(other instanceof Point)) return false;
 
-        return this.x === other.x && this.y === other.y;
+        return arePointsEqual(this, other);
     }
 
     clone() {
@@ -36,4 +47,4 @@ class Point {
     }
 }
 
-module.exports = Point;
+module.exports = { Point, arePointsEqual, arePointsCollinear };
