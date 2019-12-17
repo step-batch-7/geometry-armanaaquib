@@ -104,4 +104,34 @@ describe("Circle", function() {
             assert.deepStrictEqual(circle.hasPoint(point), false);
         });
     });
+
+    describe("#covers()", function() {
+        it("should return false if point is not passed", function() {
+            const circle = new Circle(new Point(1, 1), 5);
+            const other = { x: 1, y: 2 };
+
+            assert.deepStrictEqual(circle.covers(other), false);
+        });
+
+        it("should return false if point is outside the circle", function() {
+            const circle = new Circle(new Point(1, 1), 5);
+            const other = { x: 1, y: 7 };
+
+            assert.deepStrictEqual(circle.covers(other), false);
+        });
+
+        it("should return true if point is on the circumference", function() {
+            const circle = new Circle(new Point(1, 1), 5);
+            const point = new Point(1, 6);
+
+            assert.deepStrictEqual(circle.covers(point), true);
+        });
+
+        it("should return true if point is inside the circle", function() {
+            const circle = new Circle(new Point(1, 1), 5);
+            const point = new Point(1, 2);
+
+            assert.deepStrictEqual(circle.covers(point), true);
+        });
+    });
 });
