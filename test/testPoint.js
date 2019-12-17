@@ -1,7 +1,7 @@
-const { assert } = require("chai");
-const { Point } = require("../src/point.js");
-const { Line } = require("../src/line.js");
-const { Circle } = require("../src/circle.js");
+const assert = require("chai").assert;
+const Point = require("../src/point.js");
+const Line = require("../src/line.js");
+const Circle = require("../src/circle.js");
 
 describe("Point", function() {
     it("should not change point co-ordinates", function() {

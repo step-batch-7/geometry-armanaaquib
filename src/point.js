@@ -2,13 +2,6 @@ const arePointsEqual = function(pointOne, pointTwo) {
     return pointOne.x === pointTwo.x && pointOne.y === pointTwo.y;
 };
 
-const arePointsCollinear = function(pointOne, pointTwo, pointThree) {
-    return (
-        (pointThree.y - pointTwo.y) * (pointTwo.x - pointOne.x) ===
-        (pointTwo.y - pointOne.y) * (pointThree.x - pointTwo.x)
-    );
-};
-
 class Point {
     constructor(x, y) {
         this.x = x;
@@ -52,4 +45,4 @@ class Point {
     }
 }
 
-module.exports = { Point, arePointsCollinear };
+module.exports = Point;

@@ -1,4 +1,11 @@
-const { Point, arePointsCollinear } = require("./point");
+const Point = require("./point");
+
+const arePointsCollinear = function(pointOne, pointTwo, pointThree) {
+    return (
+        (pointThree.y - pointTwo.y) * (pointTwo.x - pointOne.x) ===
+        (pointTwo.y - pointOne.y) * (pointThree.x - pointTwo.x)
+    );
+};
 
 const isInRange = function(range, value) {
     const [start, end] = [Math.min(...range), Math.max(...range)];
@@ -115,4 +122,4 @@ class Line {
     }
 }
 
-module.exports = { Line };
+module.exports = Line;
