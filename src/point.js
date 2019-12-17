@@ -13,6 +13,11 @@ class Point {
     constructor(x, y) {
         this.x = x;
         this.y = y;
+
+        Object.defineProperties(this, {
+            x: { writable: false },
+            y: { writable: false }
+        });
     }
 
     toString() {
@@ -47,4 +52,4 @@ class Point {
     }
 }
 
-module.exports = { Point, arePointsEqual, arePointsCollinear };
+module.exports = { Point, arePointsCollinear };

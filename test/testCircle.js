@@ -3,6 +3,14 @@ const { Circle } = require("../src/circle");
 const { Point } = require("../src/point");
 
 describe("Circle", function() {
+    it("should not change center and radius", function() {
+        const circle = new Circle(new Point(1, 1), 5);
+        circle.center = new Point(1, 2);
+        circle.radius = 10;
+
+        assert.deepStrictEqual(circle, new Circle(new Point(1, 1), 5));
+    });
+
     describe("#toString()", function() {
         it("should return printable String for Circle", function() {
             const circle = new Circle({ x: 1, y: 2 }, 5);

@@ -4,6 +4,14 @@ const { Line } = require("../src/line.js");
 const { Circle } = require("../src/circle.js");
 
 describe("Point", function() {
+    it("should not change point co-ordinates", function() {
+        const point = new Point(1, 1);
+        point.x = 2;
+        point.y = 2;
+
+        assert.deepStrictEqual(point, new Point(1, 1));
+    });
+
     describe("#toString()", function() {
         it("should return printable string for point", function() {
             const point = new Point(2, 3);

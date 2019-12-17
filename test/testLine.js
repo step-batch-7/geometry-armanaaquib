@@ -3,6 +3,15 @@ const { Line } = require("../src/line");
 const { Point } = require("../src/point");
 
 describe("Line", function() {
+    it("should not change end points", function() {
+        const line = new Line(new Point(1, 1), new Point(1, 5));
+        line.start = new Point(2, 3);
+        line.end.x = 0;
+        line.end.y = 0;
+
+        assert.deepStrictEqual(line, new Line(new Point(1, 1), new Point(1, 5)));
+    });
+
     describe("#toString()", function() {
         it("should return printable string for line", function() {
             const expectedValue = "[Line (1,2) to (2,3)]";
