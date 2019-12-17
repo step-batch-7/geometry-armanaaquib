@@ -100,6 +100,14 @@ class Line {
 
         return getPoint(this.start, this.end, ratioOfDistances);
     }
+
+    findPointFromEnd(distance) {
+        const ratioOfDistances = distance / this.length;
+
+        if (!isPointOnLine(ratioOfDistances)) return null;
+
+        return getPoint(this.end, this.start, ratioOfDistances);
+    }
 }
 
 module.exports = { Line };
