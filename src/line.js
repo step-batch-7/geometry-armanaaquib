@@ -5,6 +5,17 @@ const isInRange = function(range, value) {
     return value >= start && value <= end;
 };
 
+const isPointOnLine = function(ratioOfDistances) {
+    return ratioOfDistances >= 0 && ratioOfDistances <= 1;
+};
+
+const getPoint = function(endA, endB, ratio) {
+    const x = (1 - ratio) * endA.x + ratio * endB.x;
+    const y = (1 - ratio) * endA.y + ratio * endB.y;
+
+    return new Point(x, y);
+};
+
 class Line {
     constructor(start, end) {
         this.start = new Point(start.x, start.y);
@@ -80,6 +91,14 @@ class Line {
         if (!(other instanceof Point)) return false;
 
         return this.findX(other.y) === other.x || this.findY(other.x) === other.y;
+    }
+
+    findPointFromStart(distance) {
+        const ratioOfDistances = distance / this.length;
+
+        if (!isPointOnLine(ratioOfDistances)) return null;
+
+        return getPoint(this.start, this.end, ratioOfDistances);
     }
 }
 

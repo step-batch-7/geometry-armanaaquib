@@ -338,4 +338,21 @@ describe("Line", function() {
             assert.strictEqual(line.hasPoint(point), false);
         });
     });
+
+    describe("#findPointFromStart()", function() {
+        it("should return null if point is outside the line", function() {
+            const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
+            assert.strictEqual(line.findPointFromStart(6), null);
+        });
+
+        it("should return null if distance is less than 0", function() {
+            const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
+            assert.strictEqual(line.findPointFromStart(-1), null);
+        });
+
+        it("should return point if point is on the line", function() {
+            const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
+            assert.deepStrictEqual(line.findPointFromStart(3), new Point(4, 1));
+        });
+    });
 });
