@@ -134,4 +134,12 @@ describe("Circle", function() {
             assert.deepStrictEqual(circle.covers(point), true);
         });
     });
+
+    describe("#moveTo()", function() {
+        it("should return new Circle with new center", function() {
+            const circle = new Circle(new Point(1, 1), 5);
+
+            assert.deepStrictEqual(circle.moveTo(new Point(2, 2)), new Circle(new Point(2, 2), 5));
+        });
+    });
 });

@@ -40,6 +40,10 @@ class Circle {
 
         return this.radius >= this.center.findDistanceTo(other);
     }
+
+    moveTo(center) {
+        return new Circle(center, this.radius);
+    }
 }
 
 module.exports = { Circle };
