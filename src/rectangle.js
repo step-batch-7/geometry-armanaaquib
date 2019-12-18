@@ -39,6 +39,12 @@ class Rectangle {
 
         return length * width;
     }
+
+    get perimeter() {
+        const { length, width } = getDimensions(this.vertexA, this.vertexC);
+
+        return 2 * (length + width);
+    }
 }
 
 module.exports = Rectangle;
