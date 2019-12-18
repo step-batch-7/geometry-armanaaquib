@@ -58,4 +58,41 @@ describe("Rectangle", function() {
             assert.strictEqual(rectangle.perimeter, 14);
         });
     });
+
+    describe("#isEqualTo()", function() {
+        it("should return false if Rectangle is not passed", function() {
+            const rectangle = new Rectangle(new Point(1, 1), new Point(4, 5));
+            const other = { vertexA: new Point(1, 1), vertexC: new Point(4, 5) };
+
+            assert.deepStrictEqual(rectangle.isEqualTo(other), false);
+        });
+
+        it("should return true if diagonal is same", function() {
+            const rectangleOne = new Rectangle(new Point(1, 1), new Point(4, 5));
+            const rectangleTwo = new Rectangle(new Point(1, 1), new Point(4, 5));
+
+            assert.deepStrictEqual(rectangleOne.isEqualTo(rectangleTwo), true);
+        });
+
+        it("should return true if diagonal's points are alternate same", function() {
+            const rectangleOne = new Rectangle(new Point(1, 1), new Point(4, 5));
+            const rectangleTwo = new Rectangle(new Point(4, 5), new Point(1, 1));
+
+            assert.deepStrictEqual(rectangleOne.isEqualTo(rectangleTwo), true);
+        });
+
+        it("should return true if second diagonal is given", function() {
+            const rectangleOne = new Rectangle(new Point(1, 1), new Point(5, 5));
+            const rectangleTwo = new Rectangle(new Point(1, 5), new Point(5, 1));
+
+            assert.deepStrictEqual(rectangleOne.isEqualTo(rectangleTwo), true);
+        });
+
+        it("should return false if diagonal is not same", function() {
+            const rectangleOne = new Rectangle(new Point(1, 1), new Point(4, 5));
+            const rectangleTwo = new Rectangle(new Point(3, 1), new Point(1, 5));
+
+            assert.deepStrictEqual(rectangleOne.isEqualTo(rectangleTwo), false);
+        });
+    });
 });

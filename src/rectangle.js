@@ -1,4 +1,5 @@
 const Point = require("./point");
+const Line = require("./line");
 
 const getVertexBandD = function(vertexA, vertexC) {
     const vertexB = new Point(vertexC.x, vertexA.y);
@@ -44,6 +45,19 @@ class Rectangle {
         const { length, width } = getDimensions(this.vertexA, this.vertexC);
 
         return 2 * (length + width);
+    }
+
+    isEqualTo(other) {
+        if (!(other instanceof Rectangle)) return false;
+
+        const { vertexB, vertexD } = getVertexBandD(this.vertexA, this.vertexC);
+
+        const diagonalOne = new Line(this.vertexA, this.vertexC);
+        const diagonalTwo = new Line(vertexB, vertexD);
+
+        const givenDiagonal = new Line(other.vertexA, other.vertexC);
+
+        return diagonalOne.isEqualTo(givenDiagonal) || diagonalTwo.isEqualTo(givenDiagonal);
     }
 }
 
