@@ -8,8 +8,8 @@ const arePointsCollinear = function(pointOne, pointTwo, pointThree) {
 };
 
 const isInRange = function(range, value) {
-    const [start, end] = [Math.min(...range), Math.max(...range)];
-    return value >= start && value <= end;
+    const [lowLimit, HighLimit] = [Math.min(...range), Math.max(...range)];
+    return value >= lowLimit && value <= HighLimit;
 };
 
 const isPointOnLine = function(ratioOfDistances) {
