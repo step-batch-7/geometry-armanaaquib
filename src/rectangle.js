@@ -28,6 +28,11 @@ const getSides = function(vertexA, vertexC) {
     return [ab, bc, cd, ad];
 };
 
+const isInRangeExcluding = function(range, value) {
+    const [lowLimit, HighLimit] = [Math.min(...range), Math.max(...range)];
+    return value > lowLimit && value < HighLimit;
+};
+
 class Rectangle {
     constructor(vertexA, vertexC) {
         this.vertexA = new Point(vertexA.x, vertexA.y);
@@ -77,6 +82,15 @@ class Rectangle {
         const sides = getSides(this.vertexA, this.vertexC);
 
         return sides.some(side => side.hasPoint(other));
+    }
+
+    covers(other) {
+        if (!(other instanceof Point)) return false;
+
+        return (
+            isInRangeExcluding([this.vertexA.x, this.vertexC.x], other.x) &&
+            isInRangeExcluding([this.vertexA.y, this.vertexC.y], other.y)
+        );
     }
 }
 

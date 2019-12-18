@@ -132,11 +132,48 @@ describe("Rectangle", function() {
             assert.deepStrictEqual(rectangle.hasPoint(point), true);
         });
 
-        it("should return false if point is not on any line", function() {
+        it("should return false if point is outside the rectangle", function() {
             const rectangle = new Rectangle(new Point(1, 1), new Point(5, 5));
             const point = new Point(6, 1);
 
             assert.deepStrictEqual(rectangle.hasPoint(point), false);
+        });
+
+        it("should return false if point is inside the rectangle", function() {
+            const rectangle = new Rectangle(new Point(1, 1), new Point(5, 5));
+            const point = new Point(2, 2);
+
+            assert.deepStrictEqual(rectangle.hasPoint(point), false);
+        });
+    });
+
+    describe("#covers()", function() {
+        it("should return false if point is not passed", function() {
+            const rectangle = new Rectangle(new Point(1, 1), new Point(5, 5));
+            const other = { x: 2, y: 2 };
+
+            assert.deepStrictEqual(rectangle.covers(other), false);
+        });
+
+        it("should return false if point is on side", function() {
+            const rectangle = new Rectangle(new Point(1, 1), new Point(5, 5));
+            const point = new Point(2, 1);
+
+            assert.deepStrictEqual(rectangle.covers(point), false);
+        });
+
+        it("should return false if point is outside the rectangle", function() {
+            const rectangle = new Rectangle(new Point(1, 1), new Point(5, 5));
+            const point = new Point(6, 1);
+
+            assert.deepStrictEqual(rectangle.covers(point), false);
+        });
+
+        it("should return true if point is inside the rectangle", function() {
+            const rectangle = new Rectangle(new Point(1, 1), new Point(5, 5));
+            const point = new Point(2, 2);
+
+            assert.deepStrictEqual(rectangle.covers(point), true);
         });
     });
 });
