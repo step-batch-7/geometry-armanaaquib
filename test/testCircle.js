@@ -120,11 +120,11 @@ describe("Circle", function() {
             assert.deepStrictEqual(circle.covers(other), false);
         });
 
-        it("should return true if point is on the circumference", function() {
+        it("should return false if point is on the circumference", function() {
             const circle = new Circle(new Point(1, 1), 5);
             const point = new Point(1, 6);
 
-            assert.deepStrictEqual(circle.covers(point), true);
+            assert.deepStrictEqual(circle.covers(point), false);
         });
 
         it("should return true if point is inside the circle", function() {
