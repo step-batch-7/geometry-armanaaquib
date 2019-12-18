@@ -17,6 +17,17 @@ const getDimensions = function(vertexA, vertexC) {
     return { length, width };
 };
 
+const getSides = function(vertexA, vertexC) {
+    const { vertexB, vertexD } = getVertexBandD(vertexA, vertexC);
+
+    const ab = new Line(vertexA, vertexB);
+    const bc = new Line(vertexB, vertexC);
+    const cd = new Line(vertexC, vertexD);
+    const ad = new Line(vertexA, vertexD);
+
+    return [ab, bc, cd, ad];
+};
+
 class Rectangle {
     constructor(vertexA, vertexC) {
         this.vertexA = new Point(vertexA.x, vertexA.y);
@@ -58,6 +69,14 @@ class Rectangle {
         const givenDiagonal = new Line(other.vertexA, other.vertexC);
 
         return diagonalOne.isEqualTo(givenDiagonal) || diagonalTwo.isEqualTo(givenDiagonal);
+    }
+
+    hasPoint(other) {
+        if (!(other instanceof Point)) return false;
+
+        const sides = getSides(this.vertexA, this.vertexC);
+
+        return sides.some(side => side.hasPoint(other));
     }
 }
 

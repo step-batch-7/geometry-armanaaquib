@@ -95,4 +95,48 @@ describe("Rectangle", function() {
             assert.deepStrictEqual(rectangleOne.isEqualTo(rectangleTwo), false);
         });
     });
+
+    describe("#hasPoint()", function() {
+        it("should return false if point is not passed", function() {
+            const rectangle = new Rectangle(new Point(1, 1), new Point(4, 5));
+            const other = { x: 2, y: 1 };
+
+            assert.deepStrictEqual(rectangle.hasPoint(other), false);
+        });
+
+        it("should return true if point is on line AB", function() {
+            const rectangle = new Rectangle(new Point(1, 1), new Point(5, 5));
+            const point = new Point(2, 1);
+
+            assert.deepStrictEqual(rectangle.hasPoint(point), true);
+        });
+
+        it("should return true if point is on line BC", function() {
+            const rectangle = new Rectangle(new Point(1, 1), new Point(5, 5));
+            const point = new Point(5, 2);
+
+            assert.deepStrictEqual(rectangle.hasPoint(point), true);
+        });
+
+        it("should return true if point is on line CD", function() {
+            const rectangle = new Rectangle(new Point(1, 1), new Point(5, 5));
+            const point = new Point(4, 5);
+
+            assert.deepStrictEqual(rectangle.hasPoint(point), true);
+        });
+
+        it("should return true if point is on line AD", function() {
+            const rectangle = new Rectangle(new Point(1, 1), new Point(5, 5));
+            const point = new Point(1, 2);
+
+            assert.deepStrictEqual(rectangle.hasPoint(point), true);
+        });
+
+        it("should return false if point is not on any line", function() {
+            const rectangle = new Rectangle(new Point(1, 1), new Point(5, 5));
+            const point = new Point(6, 1);
+
+            assert.deepStrictEqual(rectangle.hasPoint(point), false);
+        });
+    });
 });
