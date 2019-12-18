@@ -1,17 +1,19 @@
-const Line = require("./line");
+const Point = require("./point");
 
 class Rectangle {
-    constructor(diagonalStart, diagonalEnd) {
-        this.diagonal = new Line(diagonalStart, diagonalEnd);
+    constructor(vertexA, vertexC) {
+        this.vertexA = new Point(vertexA.x, vertexA.y);
+        this.vertexC = new Point(vertexC.x, vertexC.y);
 
         Object.defineProperties(this, {
-            diagonal: { writable: false }
+            vertexA: { writable: false },
+            vertexC: { writable: false }
         });
     }
 
     toString() {
-        const diagonalStartString = `(${this.diagonal.start.x},${this.diagonal.start.y})`;
-        const diagonalEndString = `(${this.diagonal.end.x},${this.diagonal.end.y})`;
+        const diagonalStartString = `(${this.vertexA.x},${this.vertexA.y})`;
+        const diagonalEndString = `(${this.vertexC.x},${this.vertexC.y})`;
 
         return `[Rectangle ${diagonalStartString} to ${diagonalEndString}]`;
     }
